@@ -1,5 +1,8 @@
 # Simple Discord to Minecraft Bot
 
+
+https://www.vultr.com/docs/how-to-link-discord-and-minecraft-chat-with-mineflayer-and-discord-js/
+
 This bot is a simple bot that takes vanilla Minecraft messages and outputs them to a Discord channel, as well as vice versa. For this you need a Discord bot account and a Minecraft account, as well as an applicable Minecraft server.
 
 ## Hypixel Version
