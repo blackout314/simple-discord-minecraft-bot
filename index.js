@@ -1,18 +1,28 @@
-require('dotenv').config();
 const mineflayer = require('mineflayer');
 const Discord = require('discord.js');
+
+const config = {
+        "BOT_TOKEN": "",
+        "EMAIL": "xxx",
+        "PASSWORD": "yyy",
+        "SERVER": "zzzz",
+        "DISC_SERV_ID": "1111",
+        "DISC_CHAN_ID": "2222"
+}
 
 const discordBot = new Discord.Client({
    allowedMentions: { parse: ['users', 'roles'], repliedUser: true },
    intents: [Discord.Intents.FLAGS.GUILD_MESSAGES],
 });
+
 const minecraftBot = mineflayer.createBot({
-   host: 'localhost',
-   username: 'bot',
+   host: config.SERVER,
+   username: config.EMAIL,
+   password: config.PASSWORD,
 });
 
-const discordServerID = '829678508585648138';
-const chatChannelID = '916599650079870977';
+const discordServerID = config.DISC_SERV_ID;
+const chatChannelID = config.DISC_CHAN_ID;
 
 // Console log bot logins and disconnects
 discordBot.on('ready', () => {
@@ -26,6 +36,8 @@ minecraftBot.on('login', () => {
 minecraftBot.on('end', () => {
    console.log('Minecraft bot disconnected from the server.');
 });
+
+minecraftBot.on('error', console.log)
 
 // Send message to channel in server
 async function toDiscordChat(msg) {
@@ -53,4 +65,4 @@ minecraftBot.on('chat', (username, message) => {
    toDiscordChat(`[MC] ${username}: ${message}`);
 });
 
-discordBot.login(process.env.BOT_TOKEN);
+discordBot.login(config.BOT_TOKEN);
